@@ -87,8 +87,8 @@ yarn db:seed
 1. Gets and displays list of employees with `react-table` (Supports pagination)
 2. Allows adding new employee
 3. Allows configuring displayed columns on `react-table`
-4. Able to edit employee's information on `react-table` directly
-5. Able to delete employee information
+4. Able to edit employee's informations directly on `react-table`
+5. Able to delete employee's informations
 6. Able to sort and fitler list of employees
 
 ### Tech Stack

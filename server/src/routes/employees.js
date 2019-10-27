@@ -27,8 +27,6 @@ router.get('/', (req, res) => {
       return a
     }, [])
 
-  console.log(sorted)
-
   models.Employee.findAndCountAll({
     where: {
       deleted_at: null,

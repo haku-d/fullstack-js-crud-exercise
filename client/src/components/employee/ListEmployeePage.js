@@ -115,7 +115,7 @@ class ListEmployeePage extends React.Component {
   deleteEmployee(id) {
     this.props.deleteEmployee(id).then(action => {
       if (action.type === 'delete_employee_completed') {
-        this.props.getEmployees(this.state.pageIndex + 1)
+        this.props.getEmployees([], [], this.state.pageIndex + 1)
       }
     })
   }
