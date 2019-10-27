@@ -137,7 +137,7 @@ class ListEmployeePage extends React.Component {
     )
   }
 
-  updateDisplay(column) {
+  configDisplay(column) {
     this.setState({
       columns: this.state.columns.map(c => {
         if (c.accessor === column.accessor) {
@@ -173,7 +173,7 @@ class ListEmployeePage extends React.Component {
                       type="checkbox"
                       className="drop-check"
                       id={column.accessor}
-                      onChange={() => this.updateDisplay(column)}
+                      onChange={() => this.configDisplay(column)}
                     />
                     <label
                       className="drop-check-label"
