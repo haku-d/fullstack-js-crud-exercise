@@ -12,14 +12,8 @@
     "sqlite3": "^4.1.0"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"npm run start:server\" \"npm run start:react-app\"",
-    "start:server": "cross-env DEBUG=express-sequelize nodemon ./server/bin/www --watch ./server",
-    "start:react-app": "cross-env NODE_PATH=src react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "custom:build": "nodemon src/scripts/build.js --watch src/data --ext .md",
-    "custom:start": "concurrently --kill-others \"npm run custom:build\" \"npm run start\"",
+    "start": "cross-env DEBUG=express-sequelize nodemon ./src/bin/www --watch ./server",
+    "start:prod": "node ./src/bin/www",
     "db:seed:all": "sequelize db:seed:all"
   },
   "devDependencies": {

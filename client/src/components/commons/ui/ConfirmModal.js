@@ -8,10 +8,6 @@ export default class ConfirmModal extends React.Component {
     callback: null
   }
 
-  constructor() {
-    super()
-  }
-
   show = callback => event => {
     event.preventDefault()
 

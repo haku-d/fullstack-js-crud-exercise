@@ -3,47 +3,18 @@
   "version": "0.1.0",
   "license": "None provided",
   "private": true,
-  "dependencies": {
-    "@primer/octicons-react": "^9.2.0",
-    "axios": "^0.19.0",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.3.1",
-    "concurrently": "^3.6.0",
-    "connected-react-router": "^6.3.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "history": "^4.10.1",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.19.4",
-    "rc-form": "^2.4.9",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-hot-loader": "^4.12.15",
-    "react-redux": "^6.0.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
-    "react-table": "^6.10.3",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0",
-    "sequelize": "^5.21.1",
-    "sqlite3": "^4.1.0"
-  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "start": "concurrently --kill-others \"npm run start:server\" \"npm run start:react-app\"",
-    "start:server": "cross-env DEBUG=express-sequelize nodemon ./server/bin/www --watch ./server",
-    "start:react-app": "cross-env NODE_PATH=src react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "custom:build": "nodemon src/scripts/build.js --watch src/data --ext .md",
-    "custom:start": "concurrently --kill-others \"npm run custom:build\" \"npm run start\"",
-    "db:seed:all": "sequelize db:seed:all"
+    "start": "concurrently --kill-others \"npm run start:server\" \"npm run start:client\"",
+    "start:server": "yarn workspace plex-employees-server start",
+    "start:client": "yarn workspace plex-employees-client start",
+    "build:client": "yarn workspace plex-employees-client build",
+    "db:seed": "yarn workspace plex-employees-server db:seed:all"
   },
   "devDependencies": {
-    "cross-env": "^6.0.3",
-    "debug": "^4.1.1",
-    "redux-devtools-extension": "^2.13.8",
-    "sass": "^1.23.0",
-    "sequelize-cli": "^5.5.1"
+    "concurrently": "^5.0.0"
   }
 }
