@@ -1,17 +1,40 @@
 const express = require('express')
+const Sequelize = require('sequelize')
 
 const router = express.Router()
 const models = require('../models')
 const { makeResponse } = require('../utils')
 
 router.get('/', (req, res) => {
+  let filtered = req.query.filtered || []
+  let sorted = req.query.sorted || []
   const page = req.query.page || 1
   const limit = 10
+
+  filtered = filtered
+    .map(f => JSON.parse(f))
+    .reduce((a, c) => {
+      a[c.id] = {
+        [Sequelize.Op.startsWith]: c.value
+      }
+      return a
+    }, {})
+
+  sorted = sorted
+    .map(s => JSON.parse(s))
+    .reduce((a, c) => {
+      a.push([c.id, c.desc ? 'DESC' : 'ASC'])
+      return a
+    }, [])
+
+  console.log(sorted)
+
   models.Employee.findAndCountAll({
     where: {
-      deleted_at: null
+      deleted_at: null,
+      ...filtered
     },
-    order: [['created_at', 'DESC']],
+    order: [['created_at', 'DESC'], ...sorted],
     limit,
     offset: (page - 1) * limit
   }).then(employees => {

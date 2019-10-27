@@ -12,7 +12,7 @@
     "sqlite3": "^4.1.0"
   },
   "scripts": {
-    "start": "cross-env DEBUG=express-sequelize nodemon ./src/bin/www --watch ./server",
+    "start": "cross-env DEBUG=express-sequelize nodemon ./src/bin/www --watch ./src",
     "start:prod": "node ./src/bin/www",
     "db:seed:all": "sequelize db:seed:all"
   },

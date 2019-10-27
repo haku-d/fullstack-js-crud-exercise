@@ -242,12 +242,11 @@ class AddEmployeePage extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({})
 const mapDispatchToProps = dispatch => ({
   addEmployee: employee => dispatch(addEmployee(employee))
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(createForm()(AddEmployeePage))

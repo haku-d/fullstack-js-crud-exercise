@@ -4,6 +4,7 @@ import ReactTable from 'react-table'
 import { Link } from 'react-router-dom'
 import 'react-table/react-table.css'
 import Octicon, { Plus, Trashcan, Tools } from '@primer/octicons-react'
+import { debounce } from 'underscore'
 
 import { destObject, isEqual } from 'Utils'
 import DropDown from 'components/commons/ui/DropDown'
@@ -18,7 +19,7 @@ class ListEmployeePage extends React.Component {
   constructor() {
     super()
     this.renderEditable = this.renderEditable.bind(this)
-    this.fetchData = this.fetchData.bind(this)
+    this.fetchData = debounce(this.fetchData, 500)
     this.state = {
       pageIndex: 0,
       columns: [
@@ -82,6 +83,7 @@ class ListEmployeePage extends React.Component {
             textAlign: 'center'
           },
           filterable: false,
+          sortable: false,
           Cell: ({ row }) => (
             <ConfirmModal
               title="Confirm"
@@ -105,7 +107,9 @@ class ListEmployeePage extends React.Component {
   fetchData(state, instance) {
     // Keep the page index for next fetching data
     this.setState({ pageIndex: state.page })
-    this.props.getEmployees(state.page + 1).catch(err => console.log(err))
+    this.props
+      .getEmployees(state.filtered, state.sorted, state.page + 1)
+      .catch(err => console.log(err))
   }
 
   deleteEmployee(id) {
@@ -226,7 +230,8 @@ const mapStateToProps = state => ({
   ...state.employee
 })
 const mapDispatchToProps = dispatch => ({
-  getEmployees: page => dispatch(getEmployees(page)),
+  getEmployees: (filtered, sorted, page) =>
+    dispatch(getEmployees(filtered, sorted, page)),
   updateEmployee: employee => dispatch(updateEmployee(employee)),
   deleteEmployee: id => dispatch(deleteEmployee(id))
 })

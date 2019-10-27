@@ -9,6 +9,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'get_employees_started':
+    case 'update_employee_start':
       return {
         ...state,
         loading: true
@@ -20,14 +21,21 @@ export default (state = defaultState, action) => {
         pages: action.data.pages,
         loading: false
       }
+    case 'update_employee_completed':
+      return {
+        ...state,
+        loading: false
+      }
     default:
       return state
   }
 }
 
-export const getEmployees = page => {
+export const getEmployees = (filtered, sorted, page) => {
   const params = {
-    page: page
+    page,
+    filtered,
+    sorted
   }
 
   return dispatch => {
