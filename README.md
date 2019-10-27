@@ -60,6 +60,26 @@
 > 2. Manage dependencies in same place
 > 3. Build and deploy independently
 
+## Build and run locally
+
+### 1. Install npm dependencies
+
+```
+yarn install
+```
+
+### 2. Start applications (server & client)
+
+```
+yarn start
+```
+
+### 3. Generate sample data
+
+```
+yarn db:seed
+```
+
 ## Front-End Application
 
 ### Features
