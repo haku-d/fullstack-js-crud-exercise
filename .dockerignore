@@ -1,0 +1,8 @@
+npm-debug.log.*
+node_modules
+src
+public
+.env
+test.js
+*.sublime-project
+*.sublime-workspace
