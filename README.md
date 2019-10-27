@@ -76,6 +76,8 @@ yarn start
 
 ### 3. Generate sample data
 
+Open your new terminal and run below command to generate sample data
+
 ```
 yarn db:seed
 ```
