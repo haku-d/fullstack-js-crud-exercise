@@ -19,7 +19,7 @@
     "react-table": "^6.10.3",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",
